@@ -22,7 +22,7 @@ function Navbar() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
   const [emailSent, setEmailSent] = useState();
-
+  const start = Date.now();
   async function uploadToTableland() {
     setWriting(true);
     // Establish a connection
@@ -37,9 +37,10 @@ function Navbar() {
     // console.log(await name);
 
     const name = "warp_5_166";
+
     // // Wait for the table to be created, then query
     const writeRes = await tableland.write(
-      `INSERT INTO ${name} VALUES (1,'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
+      `INSERT INTO ${name} VALUES (${start},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
     );
 
     // Wait for the write to complete
@@ -58,7 +59,7 @@ function Navbar() {
     const templateParams = {
       from_name: state.database.wallet,
       to_name: state.database.receiverMail,
-      message: "Hello World!",
+      message: start,
       wallet: state.database.receiverWallet,
       reply_to: "rushikeshkardile9@gmail.com",
     };
