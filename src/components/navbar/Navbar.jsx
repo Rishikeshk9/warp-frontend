@@ -115,18 +115,19 @@ function Navbar() {
                   state.setDatabase({ ...state.database, wallet: <Wallet /> })
                 }
               />
-              <span className='badge badge-sm indicator-item '></span>
+              <span
+                className={`badge badge-sm indicator-item ${
+                  state.database.wallet ? "badge-success" : "badge-error"
+                }`}></span>
             </div>
           </label>
           <div
             tabIndex='0'
-            className='mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow'>
-            <div className='card-body'>
-              <span className='font-bold '>{state.database.wallet}</span>
-
-              <div className='card-actions hidden'>
-                <button className='btn btn-primary btn-block'>View cart</button>
-              </div>
+            className='mt-3 card card-compact dropdown-content  bg-base-100 shadow'>
+            <div className='card-body bg-slate-400 text-base-300 px-4 w-max'>
+              <span className='font-bold '>
+                Wallet ID : {state.database.wallet}
+              </span>
             </div>
           </div>
         </div>

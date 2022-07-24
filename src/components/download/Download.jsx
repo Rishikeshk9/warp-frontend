@@ -3,14 +3,15 @@ import { useParams, useRouteMatch } from "react-router";
 import { connect } from "@tableland/sdk";
 
 import { Context } from "../../App";
+import { fail } from "assert";
 
 function Download() {
   const state = useContext(Context);
   const [authWallet, setAuthWallet] = useState();
   let params = useParams();
-
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    async function readTablelandData(tableName) {
+    async function readTablelandData() {
       // Establish a connection
       const tableland = await connect({ network: "testnet" });
 
@@ -24,11 +25,14 @@ function Download() {
           console.log("Found");
           state.setDatabase({ ...state.database, fileUrl: row[2] });
           setAuthWallet(row[3]);
+          setLoaded(true);
+          return;
         }
+        return;
       });
     }
-    readTablelandData();
-  }, [params.id]);
+    if (!loaded) readTablelandData();
+  }, [params.id, state.database.wallet]);
 
   return (
     <>
@@ -46,7 +50,11 @@ function Download() {
                 target={"_blank"}
                 rel={"noopener noreferrer"}
                 href={`https://${state.database.fileUrl}.ipfs.dweb.link`}
-                className={authWallet ? "  btn btn-primary" : " hidden"}>
+                className={
+                  authWallet === state.database.wallet
+                    ? "  btn btn-primary"
+                    : " hidden"
+                }>
                 Download
               </a>
             </div>

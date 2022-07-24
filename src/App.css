@@ -2318,23 +2318,11 @@ html {
   text-align: left;
 }
 
-.\!table {
-  position: relative !important;
-  text-align: left !important;
-}
-
 .table th:first-child {
   position: sticky;
   position: -webkit-sticky;
   left: 0px;
   z-index: 11;
-}
-
-.\!table th:first-child {
-  position: sticky !important;
-  position: -webkit-sticky !important;
-  left: 0px !important;
-  z-index: 11 !important;
 }
 
 .avatar-group .avatar {
@@ -2708,6 +2696,15 @@ html {
   padding: 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
 }
 
 .checkbox:focus-visible {
@@ -3396,26 +3393,12 @@ body[dir="rtl"] .checkbox:checked,
   vertical-align: middle;
 }
 
-.\!table :where(th, td) {
-  white-space: nowrap !important;
-  padding: 1rem !important;
-  vertical-align: middle !important;
-}
-
 .table tr.active th, 
     .table tr.active td, 
     .table tr.active:nth-child(even) th, 
     .table tr.active:nth-child(even) td {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
-}
-
-.\!table tr.active th, 
-    .\!table tr.active td, 
-    .\!table tr.active:nth-child(even) th, 
-    .\!table tr.active:nth-child(even) td {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity)) !important;
 }
 
 .table tr.hover:hover th, 
@@ -3426,24 +3409,10 @@ body[dir="rtl"] .checkbox:checked,
   background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
 }
 
-.\!table tr.hover:hover th, 
-    .\!table tr.hover:hover td, 
-    .\!table tr.hover:nth-child(even):hover th, 
-    .\!table tr.hover:nth-child(even):hover td {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity)) !important;
-}
-
 .table:where(:not(.table-zebra)) :where(thead, tbody, tfoot) :where(tr:not(:last-child) :where(th, td)) {
   border-bottom-width: 1px;
   --tw-border-opacity: 1;
   border-color: hsl(var(--b2, var(--b1)) / var(--tw-border-opacity));
-}
-
-.\!table:where(:not(.table-zebra)) :where(thead, tbody, tfoot) :where(tr:not(:last-child) :where(th, td)) {
-  border-bottom-width: 1px !important;
-  --tw-border-opacity: 1 !important;
-  border-color: hsl(var(--b2, var(--b1)) / var(--tw-border-opacity)) !important;
 }
 
 .table :where(thead, tfoot) :where(th, td) {
@@ -3455,55 +3424,25 @@ body[dir="rtl"] .checkbox:checked,
   text-transform: uppercase;
 }
 
-.\!table :where(thead, tfoot) :where(th, td) {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity)) !important;
-  font-size: 0.75rem !important;
-  line-height: 1rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-}
-
 .table :where(:first-child) :where(:first-child) :where(th, td):first-child {
   border-top-left-radius: 0.5rem;
-}
-
-.\!table :where(:first-child) :where(:first-child) :where(th, td):first-child {
-  border-top-left-radius: 0.5rem !important;
 }
 
 .table :where(:first-child) :where(:first-child) :where(th, td):last-child {
   border-top-right-radius: 0.5rem;
 }
 
-.\!table :where(:first-child) :where(:first-child) :where(th, td):last-child {
-  border-top-right-radius: 0.5rem !important;
-}
-
 .table :where(:last-child) :where(:last-child) :where(th, td):first-child {
   border-bottom-left-radius: 0.5rem;
-}
-
-.\!table :where(:last-child) :where(:last-child) :where(th, td):first-child {
-  border-bottom-left-radius: 0.5rem !important;
 }
 
 .table :where(:last-child) :where(:last-child) :where(th, td):last-child {
   border-bottom-right-radius: 0.5rem;
 }
 
-.\!table :where(:last-child) :where(:last-child) :where(th, td):last-child {
-  border-bottom-right-radius: 0.5rem !important;
-}
-
 .table :where(tbody th, tbody td) {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
-}
-
-.\!table :where(tbody th, tbody td) {
-  --tw-bg-opacity: 1 !important;
-  background-color: hsl(var(--b1) / var(--tw-bg-opacity)) !important;
 }
 
 @-webkit-keyframes toast-pop {
@@ -3695,6 +3634,32 @@ body[dir="rtl"] .checkbox:checked,
   box-shadow: 0 0 0 2px hsl(var(--b1));
 }
 
+.badge-success {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--su) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--suc, var(--nc)) / var(--tw-text-opacity));
+}
+
+.badge-error {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--er) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--erc, var(--nc)) / var(--tw-text-opacity));
+}
+
+.badge-outline.badge-success {
+  --tw-text-opacity: 1;
+  color: hsl(var(--su) / var(--tw-text-opacity));
+}
+
+.badge-outline.badge-error {
+  --tw-text-opacity: 1;
+  color: hsl(var(--er) / var(--tw-text-opacity));
+}
+
 .card-compact .card-body {
   padding: 1rem;
   font-size: 0.875rem;
@@ -3709,6 +3674,10 @@ body[dir="rtl"] .checkbox:checked,
   padding: var(--padding-card, 2rem);
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.card-normal .card-title {
+  margin-bottom: 0.75rem;
 }
 
 .menu-compact :where(li > *) {
@@ -3785,16 +3754,21 @@ body[dir="rtl"] .checkbox:checked,
   position: relative;
 }
 
-.left-2 {
-  left: 0.5rem;
+.right-2 {
+  right: 0.5rem;
 }
 
 .top-2 {
   top: 0.5rem;
 }
 
-.right-2 {
-  right: 0.5rem;
+.left-2 {
+  left: 0.5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .my-4 {
@@ -3827,20 +3801,20 @@ body[dir="rtl"] .checkbox:checked,
   display: table;
 }
 
-.\!table {
-  display: table !important;
-}
-
 .hidden {
   display: none;
 }
 
-.w-52 {
-  width: 13rem;
-}
-
 .w-full {
   width: 100%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-52 {
+  width: 13rem;
 }
 
 .w-10 {
@@ -3849,6 +3823,17 @@ body[dir="rtl"] .checkbox:checked,
 
 .w-56 {
   width: 14rem;
+}
+
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-max {
+  width: -webkit-max-content;
+  width: max-content;
 }
 
 .max-w-xs {
@@ -3863,8 +3848,16 @@ body[dir="rtl"] .checkbox:checked,
   flex: none;
 }
 
+.content-center {
+  align-content: center;
+}
+
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-between {
@@ -3875,13 +3868,52 @@ body[dir="rtl"] .checkbox:checked,
   border-radius: 9999px;
 }
 
+.bg-neutral {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--n) / var(--tw-bg-opacity));
+}
+
+.bg-base-300 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
+}
+
 .bg-base-100 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
 }
 
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
 .p-2 {
   padding: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .align-middle {
@@ -3906,9 +3938,24 @@ body[dir="rtl"] .checkbox:checked,
   text-transform: none;
 }
 
+.text-neutral-content {
+  --tw-text-opacity: 1;
+  color: hsl(var(--nc) / var(--tw-text-opacity));
+}
+
 .text-primary {
   --tw-text-opacity: 1;
   color: hsl(var(--p) / var(--tw-text-opacity));
+}
+
+.text-base-100 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--b1) / var(--tw-text-opacity));
+}
+
+.text-base-300 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--b3, var(--b2)) / var(--tw-text-opacity));
 }
 
 .underline {
