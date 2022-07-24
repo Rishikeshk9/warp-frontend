@@ -24,7 +24,7 @@ function Download() {
         if (row[0].toString() === params.id) {
           console.log("Found");
           state.setDatabase({ ...state.database, fileUrl: row[2] });
-          setAuthWallet(row[3]);
+          setAuthWallet(row[1]);
           setLoaded(true);
           return;
         }
@@ -37,12 +37,14 @@ function Download() {
   return (
     <>
       <div className='align-middle items-center content-center w-full'>
-        <div className='card w-96 bg-neutral text-neutral-content mx-auto'>
+        <div className='card w-max bg-neutral text-neutral-content mx-auto'>
           <div className='card-body items-center text-center'>
             <h2 className='card-title'>Hola!</h2>
             <p>
               Connect the wallet which was sent to you in mail to get Download
-              Access.
+              Access.{authWallet}
+              <br></br>
+              {state.database.wallet}
             </p>
             <div className='hidden'>Read Table</div>
             <div className='card-actions justify-end'>
@@ -51,7 +53,7 @@ function Download() {
                 rel={"noopener noreferrer"}
                 href={`https://${state.database.fileUrl}.ipfs.dweb.link`}
                 className={
-                  authWallet === state.database.wallet
+                  state.database.wallet === authWallet
                     ? "  btn btn-primary"
                     : " hidden"
                 }>

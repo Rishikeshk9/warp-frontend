@@ -102,8 +102,9 @@ function Navbar() {
   }
 
   return (
-    <div className='navbar bg-base-300 shadow'>
+    <div className='navbar bg-base-300 shadow sticky  top-0 z-50 '>
       <div className='flex-1'>
+        <img className='h-12 w-12 my-2 ' src='../../logo.svg'></img>
         <a className='btn btn-ghost normal-case text-xl'>Warp</a>
       </div>
       <div className='flex-none'>
@@ -316,7 +317,7 @@ function Navbar() {
                   <span>❌ failed</span>
                 ) : null}
               </p>
-              <p>Done </p>
+              {emailSent ? <p>Done </p> : null}
             </div>
           </div>
         </div>

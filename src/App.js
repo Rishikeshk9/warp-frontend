@@ -4,6 +4,8 @@ import { useState, createContext } from "react";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Download from "./components/download/Download";
+import Home from "./components/home/Home";
+
 export const Context = createContext();
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
           <Switch>
             <Route path='/download/:id'>
               <Download />
+            </Route>
+            <Route path='/'>
+              <Home />
             </Route>
           </Switch>
         </Router>
