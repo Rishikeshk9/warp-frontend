@@ -102,7 +102,7 @@ function Navbar() {
   }
 
   return (
-    <div className='navbar bg-base-100'>
+    <div className='navbar bg-base-300 shadow'>
       <div className='flex-1'>
         <a className='btn btn-ghost normal-case text-xl'>Warp</a>
       </div>
@@ -124,14 +124,14 @@ function Navbar() {
             <div className='card-body'>
               <span className='font-bold '>{state.database.wallet}</span>
 
-              <div className='card-actions'>
+              <div className='card-actions hidden'>
                 <button className='btn btn-primary btn-block'>View cart</button>
               </div>
             </div>
           </div>
         </div>
 
-        {state.database.wallet ? (
+        {state.database.wallet.length > 1 ? (
           <>
             <label htmlFor='my-modal-3' className='btn modal-button'>
               Upload Files
