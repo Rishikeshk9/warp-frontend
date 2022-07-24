@@ -14,7 +14,7 @@ function Download() {
       // Establish a connection
       const tableland = await connect({ network: "testnet" });
 
-      const readRes = await tableland.read(`SELECT * FROM warp_5_166;`);
+      const readRes = await tableland.read(`SELECT * FROM warp_5_214;`);
 
       const data = await readRes.rows;
 

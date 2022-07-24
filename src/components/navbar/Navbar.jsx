@@ -30,13 +30,13 @@ function Navbar() {
 
     // Create a table
     // let { name } = await tableland.create(
-    //   `id int, receiver text,  fileCid text, creator text,  primary key (id)`,
+    //   `id text, receiver text,  fileCid text, creator text,  primary key (id)`,
     //   `warp`,
     // );
 
     // console.log(await name);
 
-    const name = "warp_5_166";
+    const name = "warp_5_214";
 
     // // Wait for the table to be created, then query
     const writeRes = await tableland.write(
@@ -78,7 +78,6 @@ function Navbar() {
         if (res.status === 201) {
           setSending(false);
           setEmailSent(true);
-
           console.log("Email sent", res);
         }
         //setIsMailVerified(true);
@@ -206,7 +205,7 @@ function Navbar() {
                 uploading={uploading}
               />
 
-              <button onClick={() => readTablelandData("warp_5_166")}>
+              <button onClick={() => readTablelandData("warp_5_214")}>
                 Read Tableland Data
               </button>
             </div>
