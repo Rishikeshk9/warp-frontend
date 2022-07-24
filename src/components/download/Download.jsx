@@ -42,9 +42,7 @@ function Download() {
             <h2 className='card-title'>Hola!</h2>
             <p>
               Connect the wallet which was sent to you in mail to get Download
-              Access.{authWallet}
-              <br></br>
-              {state.database.wallet}
+              Access.
             </p>
             <div className='hidden'>Read Table</div>
             <div className='card-actions justify-end'>
