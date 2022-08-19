@@ -1,26 +1,19 @@
-import {
-  IconArrowBack,
-  IconArrowBarLeft,
-  IconChevronLeft,
-  IconWallet,
-} from "@tabler/icons";
+import { IconChevronLeft, IconWallet } from "@tabler/icons";
 import React, { useContext, useState } from "react";
 import { Context } from "../../App";
 import Wallet from "../wallet/Wallet";
-import { Web3Storage } from "web3.storage";
 import IpfsUpload from "../modal/IPFS/IpfsUpload";
 import { connect } from "@tableland/sdk";
-import emailjs from "@emailjs/browser";
 import axios from "axios";
+import logo from "../../logos/Warp.svg";
 
 function Navbar() {
   const state = useContext(Context);
   const [pct, setPct] = useState(0);
-
+  const connectWallet = Wallet();
   const [uploading, setUploading] = useState(false);
   const [writing, setWriting] = useState(false);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState(false);
   const [emailSent, setEmailSent] = useState();
   const start = Date.now();
   async function uploadToTableland() {
@@ -48,7 +41,7 @@ function Navbar() {
 
     setWriting(false);
 
-    sendMail();
+    //sendMail();
     // Query the table
     const readRes = await tableland.read(`SELECT * FROM ${name};`);
     console.log(await readRes);
@@ -102,20 +95,15 @@ function Navbar() {
   }
 
   return (
-    <div className='navbar bg-base-300 shadow sticky  top-0 z-50 '>
-      <div className='flex-1'>
-        <img className='h-12 w-12 my-2 ' src='../../logo.svg'></img>
-        <a className='btn btn-ghost normal-case text-xl'>Warp</a>
+    <div className='navbar bg-primary shadow sticky  top-0 z-50 '>
+      <div className='flex-1 mx-4 '>
+        <img className='h-full w-36  ' src={logo}></img>
       </div>
       <div className='flex-none'>
         <div className='dropdown dropdown-end'>
           <label tabIndex='0' className='btn btn-ghost btn-circle'>
             <div className='indicator'>
-              <IconWallet
-                onClick={() =>
-                  state.setDatabase({ ...state.database, wallet: <Wallet /> })
-                }
-              />
+              <IconWallet onClick={() => connectWallet()} />
               <span
                 className={`badge badge-sm indicator-item ${
                   state.database.wallet ? "badge-success" : "badge-error"
@@ -135,7 +123,9 @@ function Navbar() {
 
         {state.database.wallet.length > 1 ? (
           <>
-            <label htmlFor='my-modal-3' className='btn modal-button'>
+            <label
+              htmlFor='my-modal-3'
+              className='btn modal-button bg-white text-warp-primary'>
               Upload Files
             </label>
           </>
@@ -161,17 +151,17 @@ function Navbar() {
                 }>
                 Wallet
               </li>
-              <li
+              {/* <li
                 className={
                   state.database.activeTab >= 2
                     ? " step step-primary"
                     : " step "
                 }>
                 Mail
-              </li>
+              </li> */}
               <li
                 className={
-                  state.database.activeTab >= 3
+                  state.database.activeTab >= 2
                     ? " step step-primary"
                     : " step "
                 }>
@@ -234,17 +224,18 @@ function Navbar() {
 
               <button
                 className='btn btn-success mx-2'
-                onClick={() =>
+                onClick={() => {
                   state.setDatabase({
                     ...state.database,
                     activeTab: (state.database.activeTab += 1),
-                  })
-                }>
+                  });
+                  uploadToTableland();
+                }}>
                 Next
               </button>
             </div>
 
-            <div
+            {/* <div
               className={state.database.activeTab === 2 ? "block " : "hidden"}>
               <h3 className='text-lg font-bold '>Enter receiver's Mail ID🪐</h3>
 
@@ -284,10 +275,10 @@ function Navbar() {
                   Go Back
                 </button>
               </div>
-            </div>
+            </div> */}
 
             <div
-              className={state.database.activeTab === 3 ? "block" : "hidden"}>
+              className={state.database.activeTab === 2 ? "block" : "hidden"}>
               <h3 className='text-lg font-bold '>Confirming 🪐</h3>
               <div>
                 Uploading Files to IPFS ✔️

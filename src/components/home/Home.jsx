@@ -12,7 +12,8 @@ import IpfsUpload from "../modal/IPFS/IpfsUpload";
 import { connect } from "@tableland/sdk";
 import emailjs from "@emailjs/browser";
 import axios from "axios";
-
+import { useFilePicker } from "use-file-picker";
+import Rocket from "../../logos/icons/Rocket.svg";
 function Navbar() {
   const state = useContext(Context);
   const [pct, setPct] = useState(0);
@@ -23,6 +24,18 @@ function Navbar() {
   const [error, setError] = useState(false);
   const [emailSent, setEmailSent] = useState();
   const start = Date.now();
+
+  const [activeTab, setActiveTab] = useState(0);
+
+  const [openFileSelector, { filesContent, loading }] = useFilePicker({
+    accept: [".json", ".pdf"],
+    multiple: false,
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   async function uploadToTableland() {
     setWriting(true);
     // Establish a connection
@@ -102,23 +115,103 @@ function Navbar() {
   }
 
   return (
-    <div className='bg-base-200 flex  h-full p-5'>
-      <ul class='steps steps-vertical flex flex-col '>
-        <li class='step step-primary'>
-          <p className='flex gap-4'>
-            Connect Wallet{" "}
-            <IconWallet
-              onClick={() =>
-                state.setDatabase({ ...state.database, wallet: <Wallet /> })
-              }
-            />
+    <div className='grid grid-cols-8  h-screen'>
+      <div className='flex flex-col sm:col-span-3 gap-3   m-8'>
+        <div className=' grid  gap-3 '>
+          <div className='flex gap-4 items-center'>
+            <p className='  opacity-70 '>Have trouble figuring it out?</p>
+            <button className=' border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
+              Take a Tour
+            </button>
+          </div>
+
+          <div className='divider w-2/3'></div>
+
+          <div className='flex w-full '>
+            <div className='flex items-center'>
+              <button
+                className='btn btn-sm   '
+                onClick={() => openFileSelector()}>
+                Select files{" "}
+              </button>
+              {filesContent.map((file, index) => (
+                <div className='mx-2'>
+                  <h2>{file.name}</h2>
+                  <div key={index}>{file.content}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <input
+            type='text'
+            placeholder='Receiver Wallet'
+            className='input input-bordered input-primary w-full max-w-xs    '
+          />
+          <p className='underline underline-offset-4'>
+            Enter email ID of the receiver
           </p>
-        </li>
-        <li class='step step-primary'>Choose Files to upload</li>
-        <li class='step step-primary'>Enter receiver's Wallet Address</li>
-        <li class='step step-primary'>Enter receiver's Mail Address</li>
-        <li class='step step-primary'>Celebrate✨</li>
-      </ul>
+
+          <button className='btn w-32  btn-primary  btn-lg '>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-6 w-6 transform rotate-45 pb-1 mr-1'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+              strokeWidth={2}>
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M12 19l9 2-9-18-9 18 9-2zm0 0v-8'
+              />
+            </svg>
+            Send
+          </button>
+          {uploading ? (
+            <>
+              <input
+                type='range'
+                min='0'
+                max='100'
+                value='40'
+                className='range range-xs'
+              />
+              <div className='flex w-full justify-between'>
+                <p className=''>{}% Done</p>
+                <p className=''>Est Time : {}</p>
+              </div>
+            </>
+          ) : null}
+        </div>
+      </div>
+      <div className='bg-base-200 flex  h-full p-5 hidden'>
+        <ul className='steps steps-vertical flex flex-col '>
+          <li className='step step-primary'>
+            <p className='flex gap-4'>
+              Connect Wallet{" "}
+              <IconWallet
+                onClick={() =>
+                  state.setDatabase({ ...state.database, wallet: <Wallet /> })
+                }
+              />
+            </p>
+          </li>
+          <li className={`step ${state.database.wallet ? "step-primary" : ""}`}>
+            Choose Files to upload
+          </li>
+          <li
+            className={`step ${state.database.fileUrl ? "step-primary" : ""}`}>
+            Enter receiver's Wallet Address
+          </li>
+          <li
+            className={`step ${
+              state.database.receiverWallet ? "step-primary" : ""
+            }`}>
+            Celebrate✨
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
