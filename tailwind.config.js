@@ -6,7 +6,7 @@ module.exports = {
     themes: [
       {
         warp: {
-          primary: "#563392",
+          primary: "#6419e6",
 
           secondary: "#D926A9",
 

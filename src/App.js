@@ -1,5 +1,5 @@
 import logo from "./logos/Warp logo-05.svg";
-import "./App.css";
+// import "./App.css";
 import { useState, createContext } from "react";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -15,6 +15,8 @@ function App() {
     fileUrl: "",
     receiverMail: "",
     receiverWallet: "",
+    contacts: ["Rushikesh", "Aniket", "Rohit", "Rajesh", "Rajesh"],
+    history: [],
   });
 
   return (
