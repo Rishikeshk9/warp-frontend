@@ -24,19 +24,17 @@ function App() {
 
   return (
     <Context.Provider value={{ database: store, setDatabase: setStore }}>
-      <div className='max-h-screen'>
+      <div className=' h-screen   '>
         <Router>
-          {store.wallet ? <Navbar /> : null}
           <Switch>
-            <Route path='/chat'>
-              <Chat />
-            </Route>
             <Route path='/download/:id'>
+              <Navbar />
               <Download />
             </Route>
 
             {store.wallet ? (
               <Route path='/'>
+                <Navbar />
                 <Home />
                 {/* <Chat /> */}
               </Route>

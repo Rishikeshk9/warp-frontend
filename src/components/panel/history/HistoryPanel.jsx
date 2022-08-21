@@ -23,22 +23,73 @@ function HistoryPanel() {
     // console.log(receiptRes);
     const readRes = await tableland.read(`SELECT * FROM ${tableName};`);
     console.log(await readRes);
-  }
+    var revRows = await readRes.rows.reverse();
+    state.setDatabase({
+      ...state.database,
 
+      history: await revRows,
+    });
+  }
+  function formatted_date(d) {
+    var result = "";
+    d = new Date();
+
+    result +=
+      " " +
+      d.getHours() +
+      ":" +
+      d.getMinutes() +
+      ":" +
+      d.getSeconds() +
+      " " +
+      d.getMilliseconds() +
+      "" +
+      d.getDate() +
+      "/" +
+      (d.getMonth() + 1) +
+      "/" +
+      d.getFullYear();
+    return result;
+  }
   return (
-    <div className='  h-full '>
-      <button
-        onClick={() => readTablelandData("warp_5_214")}
-        className=' border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
-        Refresh
-      </button>
+    <div className='  h-full p-4'>
+      <div className='flex '>
+        <button
+          onClick={() => readTablelandData("warp_5_214")}
+          className=' border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
+          Refresh
+        </button>
+        <button
+          onClick={() =>
+            state.setDatabase({
+              ...state.database,
+
+              history: state.database.history.reverse(),
+            })
+          }
+          class='  mx-4 btn-ghost p-1 rounded-lg bg-base-200'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            class='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            stroke-width='2'>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4'
+            />
+          </svg>
+        </button>
+      </div>
       {state.database.history.map((history, index) => {
         return history[3] === state.database.wallet ? (
           <div
             className='border-b-2 border-opacity-5 border-white p-3'
             key={index}>
             <div className='flex items-center gap-4'>
-              <p className='font-bold text-slate-200'>Filename.exe</p>
+              <p className='font-bold text-slate-200'>{history[0]}</p>
               <a
                 target={"_blank"}
                 href={`https://${history[2]}.ipfs.dweb.link`}
@@ -53,9 +104,9 @@ function HistoryPanel() {
                 {history[1].slice(0, 6)}...
                 {history[1].slice(history[1].length - 2, history[1].length)}
               </div>
-              <p className=' '>04:20 pm </p>
-              &middot;
-              <p className=' '>25/12/2022</p>
+              <p className='text-xs opacity-40'>
+                {new Date(history[0] * 1).toString()}
+              </p>
             </div>
           </div>
         ) : history[1] === state.database.wallet ? (
@@ -63,7 +114,7 @@ function HistoryPanel() {
             className='border-b-2 border-opacity-5 border-white p-3'
             key={index}>
             <div className='flex items-center gap-4'>
-              <p className='font-bold text-slate-200'>Filename.exe</p>
+              <p className='font-bold text-slate-200'>{history[0]}</p>
               <a
                 target={"_blank"}
                 href={`https://${history[2]}.ipfs.dweb.link`}
@@ -78,14 +129,11 @@ function HistoryPanel() {
                 {history[3].slice(0, 6)}...
                 {history[3].slice(history[1].length - 2, history[1].length)}
               </div>
-              <p className=' '>04:20 pm </p>
-              &middot;
-              <p className=' '>25/12/2022</p>
+
+              <p className='text-xs '>{new Date(history[0] * 1).toString()}</p>
             </div>
           </div>
-        ) : (
-          <></>
-        );
+        ) : null;
       })}
     </div>
   );

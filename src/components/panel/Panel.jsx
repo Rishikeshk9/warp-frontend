@@ -45,12 +45,13 @@ function Panel() {
       }
     }
     async function updateState() {
+      var revRows = readRes.rows.reverse();
       //console.log(readRes, allConversations, xmtp);
       state.setDatabase({
         ...state.database,
         conversations: allConversations,
         xmtp: xmtp,
-        history: readRes.rows,
+        history: revRows,
         tableland: tableland,
       });
     }
@@ -62,8 +63,8 @@ function Panel() {
   useEffect(() => {}, []);
 
   return (
-    <div className='border-l-2 border-opacity-5 border-white    p-4'>
-      <div className='tabs tabs-boxed w-fit  '>
+    <div className='border-l-2 border-opacity-5 border-white   h-screen  '>
+      <div className='tabs tabs-boxed w-fit m-4 '>
         <a
           onClick={() => setActiveTab(0)}
           className={`tab   text-lg ${
@@ -86,7 +87,7 @@ function Panel() {
           Contacts
         </a>
       </div>
-      <div className='h-screen  overflow-y-auto p-4 '>
+      <div className='   overflow-y-auto  '>
         <div>
           {activeTab == 0 && <ChatsPanel />}
 

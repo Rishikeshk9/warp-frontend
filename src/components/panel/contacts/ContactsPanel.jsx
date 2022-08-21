@@ -24,8 +24,8 @@ function Panel() {
   //           className='border-b-2 border-opacity-5 border-white p-3'
   //           key={index}>
   //           <div className='flex items-center gap-4'>
-  //             <div class='avatar'>
-  //               <div class='w-10 rounded-full'>
+  //             <div className='avatar'>
+  //               <div className='w-10 rounded-full'>
   //                 <img src='https://placeimg.com/192/192/people' />
   //               </div>
   //             </div>
@@ -45,7 +45,7 @@ function Panel() {
   // );
 
   return (
-    <div className='  h-full '>
+    <div className='  h-full p-4'>
       <p className='uppercase text-4xl font-semibold'>Coming Soon!</p>
     </div>
   );

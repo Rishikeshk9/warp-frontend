@@ -95,7 +95,7 @@ function Navbar() {
   }
 
   return (
-    <div className='navbar bg-primary shadow sticky  top-0 z-50 '>
+    <div className='navbar bg-primary shadow   top-0 z-50 sticky '>
       <div className='flex-1 mx-4 '>
         <img className='h-full w-36  ' src={logo}></img>
       </div>

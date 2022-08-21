@@ -20,9 +20,9 @@ function Download() {
       const data = await readRes.rows;
 
       data.forEach((row) => {
-        console.log("Finding row: ", row);
+        //console.log("Finding row: ", row);
         if (row[0].toString() === params.id) {
-          console.log("Found");
+          console.log("Found", row);
           state.setDatabase({ ...state.database, fileUrl: row[2] });
           setAuthWallet(row[1]);
           setLoaded(true);
@@ -35,9 +35,9 @@ function Download() {
   }, [params.id, state.database.wallet]);
 
   return (
-    <>
-      <div className='align-middle items-center content-center w-full'>
-        <div className='card w-max bg-neutral text-neutral-content mx-auto'>
+    <div className=' items-center'>
+      <div className=' '>
+        <div className='card w-max bg-neutral text-neutral-content mx-auto items-center mt-12'>
           <div className='card-body items-center text-center'>
             <h2 className='card-title'>Hola!</h2>
             <p>
@@ -51,7 +51,7 @@ function Download() {
                 rel={"noopener noreferrer"}
                 href={`https://${state.database.fileUrl}.ipfs.dweb.link`}
                 className={
-                  state.database.wallet === authWallet
+                  state.database.wallet == authWallet
                     ? "  btn btn-primary"
                     : " hidden"
                 }>
@@ -61,7 +61,7 @@ function Download() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

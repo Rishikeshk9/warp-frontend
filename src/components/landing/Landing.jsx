@@ -19,12 +19,12 @@ function Landing() {
         <img src={Logo} className='h-52   w-fit'></img>
         <div className='text-[#39d4ff]  font-extrabold  my-4 text-5xl mt-12'>
           <h1 className='uppercase'>The Super app</h1>
-          <h1 className='font-medium text-primary'>for sharing</h1>
+          <h1 className='  text-primary'>for sharing</h1>
           <h1>on Web3</h1>
         </div>
         <button
           onClick={() => connectWallet()}
-          class='btn btn-primary w-fit text-white font-bold text-xl uppercase'>
+          className='btn btn-primary w-fit text-white font-bold text-xl uppercase'>
           Connect Wallet &nbsp;
           <IconWallet />
         </button>

@@ -24,6 +24,7 @@ function Navbar() {
   const [writing, setWriting] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
+  const [txnhash, setTxnhash] = useState("");
   const [emailSent, setEmailSent] = useState();
   const start = Date.now();
 
@@ -38,7 +39,6 @@ function Navbar() {
   useEffect(() => {
     if (plainFiles && !loading) {
       storeWithProgress(plainFiles[0]);
-      console.log(plainFiles[0]);
     }
   }, [plainFiles, loading]);
 
@@ -125,7 +125,7 @@ function Navbar() {
 
     // Wait for the write to complete
     console.log(await writeRes.hash);
-
+    setTxnhash(await writeRes.hash);
     setWriting(false);
 
     if (state.database.receiverMail.length > 5) sendMail();
@@ -172,7 +172,7 @@ function Navbar() {
   }
 
   return (
-    <div className='grid grid-cols-8  h-full'>
+    <div className='grid grid-cols-8  '>
       <div className='flex flex-col sm:col-span-3 gap-3   m-8'>
         <div className=' grid  gap-3 '>
           <div className='flex gap-4 items-center'>
@@ -270,7 +270,7 @@ function Navbar() {
             <div>
               Uploading Files to IPFS ✔️
               <a
-                className='text-primary underline'
+                className='opacity-60 underline'
                 rel={"noreferrer noopener"}
                 target={"_blank"}
                 href={`https://${state.database.fileUrl}.ipfs.dweb.link`}>
@@ -282,7 +282,16 @@ function Navbar() {
               {writing ? (
                 <div className='btn btn-ghost loading '></div>
               ) : (
-                <span>✔️</span>
+                <>
+                  <span>✔️</span>
+                  <a
+                    className='  underline opacity-60'
+                    rel={"noreferrer noopener"}
+                    target={"_blank"}
+                    href={`https://goerli.etherscan.io/tx/${txnhash}`}>
+                    Check TxnHash
+                  </a>{" "}
+                </>
               )}
             </div>
             {state.database.receiverMail.length > 0 ? (
@@ -302,7 +311,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div className='sm:col-span-5 flex flex-col'>
+      <div className='sm:col-span-5 flex flex-col h-full'>
         <Panel />
       </div>
       <div className='bg-base-200 flex  h-full p-5 hidden'>
