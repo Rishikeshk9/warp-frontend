@@ -12,7 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@toruslabs/torus-embed": "^1.27.2",
     "@walletconnect/web3-provider": "^1.8.0",
-    "@xmtp/xmtp-js": "^5.2.0",
+    "@xmtp/xmtp-js": "^5.5.1",
     "0xsequence": "^0.40.4",
     "constants-browserify": "^1.0.0",
     "daisyui": "^2.19.1",

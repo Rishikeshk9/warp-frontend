@@ -125,7 +125,7 @@ function Navbar() {
           <>
             <label
               htmlFor='my-modal-3'
-              className='btn modal-button bg-white text-warp-primary'>
+              className='btn modal-button bg-white text-warp-primary hidden'>
               Upload Files
             </label>
           </>

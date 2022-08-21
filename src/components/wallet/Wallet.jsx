@@ -73,6 +73,7 @@ function Wallet() {
     state.setDatabase({
       ...state.database,
       wallet: address,
+      signer: signer,
     });
     // Subscribe to accounts change
     provider.on("accountsChanged", (accounts) => {

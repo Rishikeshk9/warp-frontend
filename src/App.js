@@ -1,11 +1,13 @@
 import logo from "./logos/Warp logo-05.svg";
 // import "./App.css";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Download from "./components/download/Download";
 import Home from "./components/home/Home";
 import Chat from "./components/chat/Chat";
+import { connect } from "@tableland/sdk";
+import Landing from "./components/landing/Landing";
 export const Context = createContext();
 
 function App() {
@@ -15,15 +17,16 @@ function App() {
     fileUrl: "",
     receiverMail: "",
     receiverWallet: "",
-    contacts: ["Rushikesh", "Aniket", "Rohit", "Rajesh", "Rajesh"],
+    contacts: [],
     history: [],
+    signer: "",
   });
 
   return (
     <Context.Provider value={{ database: store, setDatabase: setStore }}>
-      <div>
+      <div className='max-h-screen'>
         <Router>
-          <Navbar />
+          {store.wallet ? <Navbar /> : null}
           <Switch>
             <Route path='/chat'>
               <Chat />
@@ -31,10 +34,15 @@ function App() {
             <Route path='/download/:id'>
               <Download />
             </Route>
-            <Route path='/'>
-              <Home />
-              {/* <Chat /> */}
-            </Route>
+
+            {store.wallet ? (
+              <Route path='/'>
+                <Home />
+                {/* <Chat /> */}
+              </Route>
+            ) : (
+              <Landing />
+            )}
           </Switch>
         </Router>
       </div>

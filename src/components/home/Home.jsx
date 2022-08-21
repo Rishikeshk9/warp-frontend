@@ -42,6 +42,8 @@ function Navbar() {
     }
   }, [plainFiles, loading]);
 
+  useEffect(() => {}, [state.database.signer]);
+
   if (loading) {
     console.log("Loading...");
   }
@@ -169,19 +171,8 @@ function Navbar() {
       });
   }
 
-  async function readTablelandData(tableName) {
-    // Establish a connection
-    const tableland = await connect({ network: "testnet" });
-    const receiptRes = await tableland.receipt(
-      "0x867b803a36feeb7ff35f5331f74fcee8bd837ed0d06c866423c7884a0dc83320",
-    );
-    console.log(receiptRes);
-    const readRes = await tableland.read(`SELECT * FROM ${tableName};`);
-    console.log(await readRes);
-  }
-
   return (
-    <div className='grid grid-cols-8  h-screen'>
+    <div className='grid grid-cols-8  h-full'>
       <div className='flex flex-col sm:col-span-3 gap-3   m-8'>
         <div className=' grid  gap-3 '>
           <div className='flex gap-4 items-center'>
@@ -208,7 +199,6 @@ function Navbar() {
               ))}
             </div>
           </div>
-
           <input
             type='file'
             onChange={(e) => {
