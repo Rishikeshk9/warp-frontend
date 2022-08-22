@@ -32,7 +32,7 @@ function Download() {
       });
     }
     if (!loaded) readTablelandData();
-  }, [params.id, state.database.wallet]);
+  }, [loaded, params.id, state, state.database.signer]);
 
   return (
     <div className=' items-center'>
