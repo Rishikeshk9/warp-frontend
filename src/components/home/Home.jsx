@@ -106,6 +106,7 @@ function Navbar() {
   }
 
   async function uploadToTableland() {
+    setTime(Date.now());
     setProcessing(true); // show the processing spinner
     setWriting(true);
     // Establish a connection

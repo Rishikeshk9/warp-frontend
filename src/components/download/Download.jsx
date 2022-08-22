@@ -31,7 +31,7 @@ function Download() {
         return;
       });
     }
-    if (!loaded) readTablelandData();
+    readTablelandData();
   }, [loaded, params.id, state, state.database.signer]);
 
   return (
