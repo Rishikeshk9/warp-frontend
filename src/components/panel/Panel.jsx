@@ -68,21 +68,21 @@ function Panel() {
         <a
           onClick={() => setActiveTab(0)}
           className={`tab   text-lg ${
-            activeTab == 0 ? "tab-active font-semibold " : ""
+            activeTab == 0 ? "tab-active font-semibold text-white " : ""
           }`}>
           Chats
         </a>
         <a
           onClick={() => setActiveTab(1)}
-          className={`tab   text-lg ${
-            activeTab == 1 ? "tab-active font-semibold " : ""
+          className={`tab   text-lg  ${
+            activeTab == 1 ? "tab-active font-semibold text-white" : ""
           }`}>
           History
         </a>
         <a
           onClick={() => setActiveTab(2)}
           className={`tab   text-lg ${
-            activeTab == 2 ? "tab-active font-semibold " : ""
+            activeTab == 2 ? "tab-active font-semibold text-white" : ""
           }`}>
           Contacts
         </a>

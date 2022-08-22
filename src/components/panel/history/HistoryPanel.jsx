@@ -55,7 +55,7 @@ function HistoryPanel() {
     <div className='  h-full p-4'>
       <div className='flex '>
         <button
-          onClick={() => readTablelandData("warp_5_214")}
+          onClick={() => readTablelandData("warp_5_432")}
           className=' border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
           Refresh
         </button>
@@ -84,32 +84,32 @@ function HistoryPanel() {
         </button>
       </div>
       {state.database.history.map((history, index) => {
-        return history[3] === state.database.wallet ? (
+        return history[4] === state.database.wallet ? (
           <div
             className='border-b-2 border-opacity-5 border-white p-3'
             key={index}>
             <div className='flex items-center gap-4'>
-              <p className='font-bold text-slate-200'>{history[0]}</p>
+              <p className='font-bold text-slate-200'>{history[1]}</p>
               <a
                 target={"_blank"}
-                href={`https://${history[2]}.ipfs.dweb.link`}
+                href={`https://${history[3]}.ipfs.dweb.link/` + history[1]}
                 className=' text-sm cursor-pointer underline text-yellow-400'>
-                view
+                open
               </a>
             </div>
             <div className='flex items-center gap-4  '>
               <div className='mr-2 flex '>
                 <img src={To} className='h-6 w-6'></img>
                 <span className='text-slate-200'>To:</span>{" "}
-                {history[1].slice(0, 6)}...
-                {history[1].slice(history[1].length - 2, history[1].length)}
+                {history[2].slice(0, 6)}...
+                {history[2].slice(history[2].length - 2, history[2].length)}
               </div>
               <p className='text-xs opacity-40'>
                 {new Date(history[0] * 1).toString()}
               </p>
             </div>
           </div>
-        ) : history[1] === state.database.wallet ? (
+        ) : history[2] === state.database.wallet ? (
           <div
             className='border-b-2 border-opacity-5 border-white p-3'
             key={index}>
@@ -117,9 +117,9 @@ function HistoryPanel() {
               <p className='font-bold text-slate-200'>{history[0]}</p>
               <a
                 target={"_blank"}
-                href={`https://${history[2]}.ipfs.dweb.link`}
+                href={`https://${history[3]}.ipfs.dweb.link/` + history[1]}
                 className=' text-sm cursor-pointer underline text-yellow-400'>
-                view
+                open
               </a>
             </div>
             <div className='flex items-center gap-4  '>
@@ -127,10 +127,12 @@ function HistoryPanel() {
                 <img src={From} className='h-6 w-6'></img>
                 <span className='text-slate-200'>From:</span>{" "}
                 {history[3].slice(0, 6)}...
-                {history[3].slice(history[1].length - 2, history[1].length)}
+                {history[3].slice(history[2].length - 2, history[2].length)}
               </div>
 
-              <p className='text-xs '>{new Date(history[0] * 1).toString()}</p>
+              <p className='text-xs opacity-40'>
+                {new Date(history[0] * 1).toString()}
+              </p>
             </div>
           </div>
         ) : null;

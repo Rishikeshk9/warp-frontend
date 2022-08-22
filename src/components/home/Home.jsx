@@ -75,7 +75,8 @@ function Navbar() {
         console.log("uploading files with cid ->", cid);
         filecid = cid;
       };
-      console.log(Object.keys(files).map((f) => files[f].size));
+      console.log(Object.keys(files).map((f) => files[f]));
+      //console.log(Object.keys(files).map((f) => files[f].size));
       // when each chunk is stored, update the percentage complete and display
       const totalSize = Object.keys(files)
         .map((f) => files[f].size)
@@ -92,6 +93,7 @@ function Navbar() {
           state.setDatabase({
             ...state.database,
             fileUrl: filecid,
+            fileName: files[0].name,
           });
         }
       };
@@ -114,17 +116,17 @@ function Navbar() {
 
     // Create a table
     // let { name } = await tableland.create(
-    //   `id text, receiver text,  fileCid text, creator text,  primary key (id)`,
+    //   `id text, filename text, receiver text,  fileCid text, creator text,  primary key (id)`,
     //   `warp`,
     // );
 
     // console.log(await name);
 
-    const name = "warp_5_214";
+    const name = "warp_5_432";
     console.log(time);
     // // Wait for the table to be created, then query
     const writeRes = await tableland.write(
-      `INSERT INTO ${name} VALUES (${time},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
+      `INSERT INTO ${name} VALUES (${time},'${state.database.fileName}','${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
     );
 
     // Wait for the write to complete
