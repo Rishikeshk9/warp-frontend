@@ -182,7 +182,9 @@ function Navbar() {
       <div className='flex flex-col sm:col-span-3 gap-3   m-8'>
         <div className=' grid  gap-3 '>
           <div className='text-slate-300 items-center flex gap-4'>
-            <span class='indicator-item badge badge-success'>connected</span>
+            <span className='indicator-item badge badge-success'>
+              connected
+            </span>
 
             {state.database.wallet}
           </div>

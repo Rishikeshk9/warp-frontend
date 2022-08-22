@@ -27,7 +27,7 @@ function Panel() {
 
     async function createXMTPClient() {
       const client = await Client.create(state.database.signer);
-      readTablelandData("warp_5_214").then(() => {
+      readTablelandData("warp_5_432").then(() => {
         fetchConversations(client).then(() => {
           updateState();
         });

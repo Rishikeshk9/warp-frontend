@@ -2,6 +2,8 @@ import {
   IconArrowBack,
   IconArrowBarLeft,
   IconChevronLeft,
+  IconPlus,
+  IconRefresh,
   IconWallet,
 } from "@tabler/icons";
 import React, { useContext, useState } from "react";
@@ -12,6 +14,14 @@ function ChatsPanel() {
   const state = useContext(Context);
   const [person, setPerson] = useState();
   const [switchToChat, setSwitchToChat] = useState(false);
+
+  async function fetchNewChats() {
+    const allConversations = await state.database.xmtp.conversations.list();
+    // Say gm to everyone you've been chatting with
+    for (const conversation of allConversations) {
+      console.log(`We have talked to ${conversation.peerAddress}`);
+    }
+  }
   async function openChat(address) {
     setPerson(address);
     setSwitchToChat(!switchToChat);
@@ -22,11 +32,18 @@ function ChatsPanel() {
     <div className='  h-full p-4'>
       {/*   */}
 
-      <label
-        htmlFor='new-chat-modal'
-        className='cursor-pointer border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
-        New Chat
-      </label>
+      <div className='flex items-center'>
+        <label
+          htmlFor='new-chat-modal'
+          className='flex gap-1 items-center cursor-pointer border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-2 py-1 hover:bg-primary hover:border-primary hover:text-white'>
+          <IconPlus c /> New Chat
+        </label>
+        <button
+          onClick={() => fetchNewChats()}
+          className='  mx-4 btn-ghost p-1 rounded-lg bg-base-200'>
+          <IconRefresh />
+        </button>
+      </div>
 
       {state.database.conversations &&
         state.database.conversations.reverse().map((contact, index) => {

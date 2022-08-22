@@ -2,6 +2,7 @@ import {
   IconArrowBack,
   IconArrowBarLeft,
   IconChevronLeft,
+  IconRefresh,
   IconWallet,
 } from "@tabler/icons";
 import React, { useContext, useState } from "react";
@@ -53,11 +54,11 @@ function HistoryPanel() {
   }
   return (
     <div className='  h-full p-4'>
-      <div className='flex '>
+      <div className='flex  '>
         <button
           onClick={() => readTablelandData("warp_5_432")}
-          className=' border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
-          Refresh
+          className='    btn-ghost p-1 rounded-lg bg-base-200'>
+          <IconRefresh />
         </button>
         <button
           onClick={() =>
@@ -67,17 +68,17 @@ function HistoryPanel() {
               history: state.database.history.reverse(),
             })
           }
-          class='  mx-4 btn-ghost p-1 rounded-lg bg-base-200'>
+          className='  mx-4 btn-ghost p-1 rounded-lg bg-base-200'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            class='h-6 w-6'
+            className='h-6 w-6'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
-            stroke-width='2'>
+            strokeWidth='2'>
             <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
+              strokeLinecap='round'
+              strokeLinejoin='round'
               d='M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4'
             />
           </svg>
@@ -114,7 +115,7 @@ function HistoryPanel() {
             className='border-b-2 border-opacity-5 border-white p-3'
             key={index}>
             <div className='flex items-center gap-4'>
-              <p className='font-bold text-slate-200'>{history[0]}</p>
+              <p className='font-bold text-slate-200'>{history[1]}</p>
               <a
                 target={"_blank"}
                 href={`https://${history[3]}.ipfs.dweb.link/` + history[1]}

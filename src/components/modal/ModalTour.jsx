@@ -8,11 +8,11 @@ function Modal() {
   return (
     <>
       <label
-        for='modal-tour'
+        htmlFor='modal-tour'
         className='cursor-pointer border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
         Take a Tour
       </label>
-      {/* <label for='modal-tour' className='btn modal-button'>
+      {/* <label htmlFor='modal-tour' className='btn modal-button'>
         open modal
       </label> */}
 
@@ -20,7 +20,7 @@ function Modal() {
       <div className='modal'>
         <div className='modal-box relative'>
           <label
-            for='modal-tour'
+            htmlFor='modal-tour'
             className='btn btn-sm btn-circle absolute right-2 top-2'>
             ✕
           </label>
