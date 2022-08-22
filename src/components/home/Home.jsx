@@ -3,6 +3,8 @@ import {
   IconArrowBarLeft,
   IconChevronLeft,
   IconWallet,
+  IconCopy,
+  IconShare,
 } from "@tabler/icons";
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../App";
@@ -15,7 +17,8 @@ import axios from "axios";
 import { useFilePicker } from "use-file-picker";
 import Rocket from "../../logos/icons/Rocket.svg";
 import Panel from "../panel/Panel";
-
+import Download from "../download/Download";
+import ModalTour from "../modal/ModalTour";
 function Navbar() {
   const state = useContext(Context);
   const [pct, setPct] = useState(0);
@@ -26,8 +29,8 @@ function Navbar() {
   const [error, setError] = useState(false);
   const [txnhash, setTxnhash] = useState("");
   const [emailSent, setEmailSent] = useState();
-  const start = Date.now();
 
+  const [time, setTime] = useState(Date.now());
   const [processing, setProcessing] = useState(false);
 
   const [openFileSelector, { filesContent, loading, plainFiles }] =
@@ -120,7 +123,7 @@ function Navbar() {
 
     // // Wait for the table to be created, then query
     const writeRes = await tableland.write(
-      `INSERT INTO ${name} VALUES (${start},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
+      `INSERT INTO ${name} VALUES (${time},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
     );
 
     // Wait for the write to complete
@@ -140,7 +143,7 @@ function Navbar() {
     const templateParams = {
       from_name: state.database.wallet,
       to_name: state.database.receiverMail,
-      message: start,
+      message: time,
       wallet: state.database.receiverWallet,
       reply_to: "rushikeshkardile9@gmail.com",
     };
@@ -175,11 +178,14 @@ function Navbar() {
     <div className='grid grid-cols-8  '>
       <div className='flex flex-col sm:col-span-3 gap-3   m-8'>
         <div className=' grid  gap-3 '>
+          <div className='text-slate-300 items-center flex gap-4'>
+            <span class='indicator-item badge badge-success'>connected</span>
+
+            {state.database.wallet}
+          </div>
           <div className='flex gap-4 items-center'>
             <p className='  opacity-70 '>Have trouble figuring it out?</p>
-            <button className=' border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-4 py-1 hover:bg-primary hover:border-primary hover:text-white'>
-              Take a Tour
-            </button>
+            <ModalTour />
           </div>
 
           <div className='divider my-1 w-2/3'></div>
@@ -307,7 +313,18 @@ function Navbar() {
               </p>
             ) : null}
 
-            {emailSent || !writing ? <p>Done </p> : null}
+            {emailSent || !writing ? (
+              <div className='flex gap-2 items-center'>
+                <a
+                  className='bg-base-200 border hover:bg-primary hover:border-primary transition-all duration-200 px-4 rounded-lg flex py-1 gap-2 my-1'
+                  rel={"noreferrer noopener"}
+                  target={"_blank"}
+                  href={`https://warp-frontend-xi.vercel.app/download/` + time}>
+                  Share
+                  <IconShare />
+                </a>{" "}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
