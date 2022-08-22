@@ -179,14 +179,19 @@ function Navbar() {
 
   return (
     <div className='grid grid-cols-8  '>
-      <div className='flex flex-col sm:col-span-3 gap-3   m-8'>
+      <div className='flex flex-col sm:col-span-3 col-span-8 gap-3   m-8'>
         <div className=' grid  gap-3 '>
           <div className='text-slate-300 items-center flex gap-4'>
             <span className='indicator-item badge badge-success'>
               connected
             </span>
 
-            {state.database.wallet}
+            {state.database.wallet.slice(0, 6) +
+              "..." +
+              state.database.wallet.slice(
+                state.database.wallet.length - 4,
+                state.database.wallet.length,
+              )}
           </div>
           <div className='flex gap-4 items-center'>
             <p className='  opacity-70 '>Have trouble figuring it out?</p>
@@ -333,7 +338,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div className='sm:col-span-5 flex flex-col h-full'>
+      <div className='sm:col-span-5 col-span-8 flex flex-col h-full'>
         <Panel />
       </div>
       <div className='bg-base-200 flex  h-full p-5 hidden'>
