@@ -121,7 +121,7 @@ function Navbar() {
     // console.log(await name);
 
     const name = "warp_5_214";
-
+    console.log(time);
     // // Wait for the table to be created, then query
     const writeRes = await tableland.write(
       `INSERT INTO ${name} VALUES (${time},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
