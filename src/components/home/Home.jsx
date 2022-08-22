@@ -282,7 +282,7 @@ function Navbar() {
             Send
           </button>
           <div className={processing ? "block" : "hidden"}>
-            <h3 className='text-lg font-bold '>Processing 🪐</h3>
+            <h3 className='text-lg font-bold '>WAGMI 🚀</h3>
             <div>
               Uploading Files to IPFS ✔️
               <a

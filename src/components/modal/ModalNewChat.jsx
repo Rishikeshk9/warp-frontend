@@ -65,18 +65,19 @@ function Modal() {
             </label>
             <input
               type='text'
-              placeholder='Wallet Address'
+              placeholder='Greetings!'
               onChange={(e) => setMessage(e.target.value)}
               value={message}
               className='input input-bordered w-full max-w-xs'
             />
           </div>
-          <button
+          <label
+            htmlFor='new-chat-modal'
             onClick={sendMessage}
             disabled={message && messageTo ? false : true}
             className='btn btn-primary mt-2'>
             Send
-          </button>
+          </label>
         </div>
       </div>
     </>
