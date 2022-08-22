@@ -35,7 +35,7 @@ function ChatsPanel() {
       <div className='flex items-center'>
         <label
           htmlFor='new-chat-modal'
-          className='flex gap-1 items-center cursor-pointer border border-1.5 font-semibold border-gray-600   rounded-lg w-fit  px-2 py-1 hover:bg-primary hover:border-primary hover:text-white'>
+          className='flex gap-1 items-center cursor-pointer   font-semibold  btn-ghost p-1 rounded-lg bg-base-200 w-fit  px-2 py-1 hover:bg-primary hover:border-primary hover:text-white'>
           <IconPlus c /> New Chat
         </label>
         <button
@@ -44,7 +44,7 @@ function ChatsPanel() {
           <IconRefresh />
         </button>
       </div>
-
+      <p className='m-2'>Recent Chats</p>
       {state.database.conversations &&
         state.database.conversations.reverse().map((contact, index) => {
           return (
@@ -58,7 +58,14 @@ function ChatsPanel() {
                     <img src='https://placeimg.com/192/192/people' />
                   </div>
                 </div>
-                <p className='font-bold'>{contact.peerAddress}</p>
+                <p className='font-bold'>
+                  {contact.peerAddress.slice(0, 6) +
+                    "..." +
+                    contact.peerAddress.slice(
+                      contact.peerAddress.length - 4,
+                      contact.peerAddress.length,
+                    )}
+                </p>
               </div>
               <div className='flex items-center gap-4 ml-2 hidden'>
                 <p>Hey How are you ?</p>
