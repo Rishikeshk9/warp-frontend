@@ -13,7 +13,7 @@ function Download() {
   useEffect(() => {
     async function readTablelandData() {
       // Establish a connection
-      const tableland = await connect({ network: "testnet" });
+      const tableland = connect({ network: "testnet",  chain: 'polygon-mumbai' });
 
       const readRes = await tableland.read(`SELECT * FROM warp_5_214;`);
 

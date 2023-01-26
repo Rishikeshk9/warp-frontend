@@ -19,7 +19,7 @@ function Navbar() {
   async function uploadToTableland() {
     setWriting(true);
     // Establish a connection
-    const tableland = await connect({ network: "testnet" });
+    const tableland = connect({ network: "testnet",  chain: 'polygon-mumbai'  });
 
     // Create a table
     // let { name } = await tableland.create(
@@ -85,7 +85,7 @@ function Navbar() {
 
   async function readTablelandData(tableName) {
     // Establish a connection
-    const tableland = await connect({ network: "testnet" });
+    const tableland = connect({ network: "testnet",  chain: 'polygon-mumbai'  });
     const receiptRes = await tableland.receipt(
       "0x867b803a36feeb7ff35f5331f74fcee8bd837ed0d06c866423c7884a0dc83320",
     );

@@ -15,11 +15,12 @@ function Modal() {
     console.log(state.database.xmtp);
     const conversation =
       await state.database.xmtp.conversations.newConversation(messageTo);
+    console.log("conversation : ", conversation);
     // Send a message
     await conversation.send(message);
 
     async function fetchConversations() {
-      const client = await Client.create(state.database.signer);
+      const client = await Client.create(state.database.signer, { env: 'dev' });
       const allConversations = await client.conversations.list();
       // Say gm to everyone you've been chatting with
       for (const conversation of allConversations) {
